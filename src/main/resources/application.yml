@@ -3,6 +3,8 @@ spring:
     url: jdbc:postgresql://localhost:5432/transferencia_bancaria
     username: miguel
     password: "123"
+    hikari:
+      maximum-pool-size: 50
   jpa:
     hibernate:
       ddl-auto: update
