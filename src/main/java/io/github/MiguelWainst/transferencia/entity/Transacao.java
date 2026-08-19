@@ -34,10 +34,12 @@ public class Transacao {
     private Status status;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "conta_origem_id", nullable = false)
+    @JoinColumn(name = "conta_origem_id", nullable = false,
+            foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Conta contaOrigem;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "conta_destino_id", nullable = false)
+    @JoinColumn(name = "conta_destino_id", nullable = false,
+            foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Conta contaDestino;
 }
