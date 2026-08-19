@@ -10,7 +10,6 @@ public record TransacaoDTO(
         UUID contaOrigemId,
         @NotNull(message = "Campo obrigatório")
         UUID contaDestinoId,
-        @Positive
         @NotNull(message = "Campo obrigatório")
         @DecimalMin(value = "0.01")
         @Digits(integer = 10, fraction = 2)

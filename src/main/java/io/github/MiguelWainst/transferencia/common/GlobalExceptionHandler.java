@@ -54,7 +54,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.CONFLICT)
     public ErroResposta handleSaldoInsuficienteException(SaldoInsuficienteException e) {
         return new ErroResposta(
-                HttpStatus.BAD_REQUEST.value(),
+                HttpStatus.CONFLICT.value(),
                 e.getMessage(),
                 List.of()
         );
