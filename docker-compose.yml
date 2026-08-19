@@ -9,7 +9,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - transferencia_bancaria_data:/var/lib/postgresql/data
+      - transferencia_bancaria_data:/var/lib/postgresql
 
 volumes:
   transferencia_bancaria_data:
