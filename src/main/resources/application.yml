@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/transferencia_bancaria
-    username: miguel
-    password: "123"
+    url: jdbc:postgresql://localhost:5432/${DB_NAME:transferencia_bancaria}
+    username: ${DB_USER:miguel}
+    password: ${DB_PASSWORD:123}
     hikari:
       maximum-pool-size: 50
   jpa:

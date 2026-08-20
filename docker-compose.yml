@@ -3,9 +3,9 @@ services:
     image: postgres:18.4
     container_name: transferencia-bancaria-db
     environment:
-      POSTGRES_USER: miguel
-      POSTGRES_PASSWORD: "123"
-      POSTGRES_DB: transferencia_bancaria
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     ports:
       - "5432:5432"
     volumes:
