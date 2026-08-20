@@ -1,6 +1,7 @@
 package io.github.MiguelWainst.transferencia.service;
 
 import io.github.MiguelWainst.transferencia.dto.TransacaoDTO;
+import io.github.MiguelWainst.transferencia.dto.TransacaoRespostaDTO;
 import io.github.MiguelWainst.transferencia.entity.Conta;
 import io.github.MiguelWainst.transferencia.entity.Status;
 import io.github.MiguelWainst.transferencia.entity.Transacao;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -53,5 +55,21 @@ public class TransacaoService {
     private Conta buscarComLock(UUID id) {
         return contaRepository.findByIdWithLock(id)
                 .orElseThrow(() -> new ContaNaoEncontradaException("Conta não encontrada"));
+    }
+
+    public List<TransacaoRespostaDTO> buscarHistorico(UUID contaId) {
+        if (!contaRepository.existsById(contaId)) {
+            throw new ContaNaoEncontradaException("Conta não encontrada");
+        }
+        return transacaoRepository.findByContaId(contaId).stream()
+                .map(t -> new TransacaoRespostaDTO(
+                        t.getId(),
+                        t.getDataTransacao(),
+                        t.getValor(),
+                        t.getStatus(),
+                        t.getContaOrigem().getId(),
+                        t.getContaDestino().getId()
+                ))
+                .toList();
     }
 }
